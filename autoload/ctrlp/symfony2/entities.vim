@@ -1,9 +1,9 @@
 if exists('g:loaded_ctrlp_symfony2_entities') && g:loaded_ctrlp_symfony2_entities
-  finish
+    finish
 endif
 let g:loaded_ctrlp_symfony2_entities = 1
 
-let s:models_var = {
+let s:entities_var = {
 \  'init':   'ctrlp#symfony2#entities#init()',
 \  'accept': 'ctrlp#symfony2#entities#accept',
 \  'lname':  'Symfony2 entities',
@@ -11,23 +11,23 @@ let s:models_var = {
 \  'type':   'path',
 \}
 
-let s:finder = "find src/ \\( -path '*/Entity/*' -or -path '*/Resources/config/doctrine/*' \\) -! -path '*/Tests/*' -type f ! -name '.*' -prune | sed 's_src/__'"
-
 if exists('g:ctrlp_ext_vars') && !empty(g:ctrlp_ext_vars)
-  let g:ctrlp_ext_vars = add(g:ctrlp_ext_vars, s:models_var)
+    let g:ctrlp_ext_vars = add(g:ctrlp_ext_vars, s:entities_var)
 else
-  let g:ctrlp_ext_vars = [s:models_var]
+    let g:ctrlp_ext_vars = [s:entities_var]
 endif
 
-function! ctrlp#symfony2#entities#init()
-  return split(system(s:finder), "\n")
-endfunc
+let s:find = "cd %s; find src/ \\( -path '*/Entity/*' -or -path '*/Resources/config/doctrine/*' \\) -! -path '*/Tests/*' -type f ! -name '.*' -prune | sed 's_src/__'"
 
-function! ctrlp#symfony2#entities#accept(mode, str)
-  call ctrlp#acceptfile(a:mode, 'src/' . a:str)
-endfunc
+fun! ctrlp#symfony2#entities#init()
+    return ctrlp#symfony2#helpers#find(s:find)
+endf
+
+fun! ctrlp#symfony2#entities#accept(mode, str)
+    call ctrlp#acceptfile(a:mode, ctrlp#symfony2#helpers#symfony2_root() . '/src/' . a:str)
+endf
 
 let s:id = g:ctrlp_builtins + len(g:ctrlp_ext_vars)
-function! ctrlp#symfony2#entities#id()
-  return s:id
-endfunction
+fun! ctrlp#symfony2#entities#id()
+    return s:id
+endf
