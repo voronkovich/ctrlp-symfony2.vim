@@ -5,3 +5,4 @@ command! CtrlPSymfony2Controllers call ctrlp#init(ctrlp#symfony2#controllers#id(
 command! CtrlPSymfony2Views call ctrlp#init(ctrlp#symfony2#views#id())
 command! CtrlPSymfony2Assets call ctrlp#init(ctrlp#symfony2#assets#id())
 command! CtrlPSymfony2Configs call ctrlp#init(ctrlp#symfony2#configs#id())
+command! CtrlPSymfony2Sources call ctrlp#init(ctrlp#symfony2#sources#id())
