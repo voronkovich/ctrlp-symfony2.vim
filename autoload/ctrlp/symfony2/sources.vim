@@ -24,7 +24,7 @@ fun! ctrlp#symfony2#sources#init()
 endf
 
 fun! ctrlp#symfony2#sources#accept(mode, str)
-    call ctrlp#acceptfile(a:mode, ctrlp#symfony2#helpers#symfony2_root() . a:str)
+    call ctrlp#acceptfile(a:mode, ctrlp#symfony2#helpers#symfony2_root() . '/' . a:str)
 endf
 
 let s:id = g:ctrlp_builtins + len(g:ctrlp_ext_vars)
