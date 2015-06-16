@@ -1,4 +1,6 @@
-let g:ctrlp_custom_ignore = { 'dir': '\v[\/](app[\/]cache|vendor[\/]composer|web[\/]bundles)$' }
+if ! exists('g:ctrlp_custom_ignore')
+    let g:ctrlp_custom_ignore = { 'dir': '\v[\/](app[\/]cache|vendor[\/]composer|web[\/]bundles)$' }
+endif
 
 command! CtrlPSymfony2Entities call ctrlp#init(ctrlp#symfony2#entities#id())
 command! CtrlPSymfony2Controllers call ctrlp#init(ctrlp#symfony2#controllers#id())
