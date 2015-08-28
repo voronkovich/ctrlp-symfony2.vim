@@ -17,7 +17,7 @@ else
     let g:ctrlp_ext_vars = [s:views_var]
 endif
 
-let s:find = "cd %s; find src/ -path '*/Resources/views/*' -type f ! -name '.*' -prune | sed 's_src/__'; find app/Resources/views -type f ! -name '.*' -prune "
+let s:find = "cd %s; find src/ -path '*/Resources/views/*' -type f ! -name '.*' -prune | sed 's_src/__'; find app/Resources/*/views -type f ! -name '.*' -prune "
 
 fun! ctrlp#symfony2#views#init()
     return ctrlp#symfony2#helpers#find(s:find)
