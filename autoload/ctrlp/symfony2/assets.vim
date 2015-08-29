@@ -17,14 +17,14 @@ else
     let g:ctrlp_ext_vars = [s:assets_var]
 endif
 
-let s:find = "cd %s; find src/ -path '*/Resources/public/*' -type f ! -name '.*' -prune | sed 's_src/__'"
+let s:find = "cd %s; find src/ app/ \\( -path '*/Resources/public/*' -or -path '*/Resources/assets/*' \\) -type f ! -name '.*' -prune; find web/js web/css -type f ! -name '.*' -prune;"
 
 fun! ctrlp#symfony2#assets#init()
   return ctrlp#symfony2#helpers#find(s:find)
 endf
 
 fun! ctrlp#symfony2#assets#accept(mode, str)
-    call ctrlp#acceptfile(a:mode, ctrlp#symfony2#helpers#symfony2_root() . '/src/' . a:str)
+    call ctrlp#acceptfile(a:mode, ctrlp#symfony2#helpers#symfony2_root() . '/' . a:str)
 endf
 
 let s:id = g:ctrlp_builtins + len(g:ctrlp_ext_vars)
