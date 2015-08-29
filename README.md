@@ -21,7 +21,7 @@ git clone git://github.com/voronkovich/ctrlp-symfony2.vim ~/.vim/bundle/ctrlp-sy
 Add to vimrc:
 
 ``` vim
-Bundle 'voronkovich/ctrlp-symfony2.vim'
+Plugin 'voronkovich/ctrlp-symfony2.vim'
 ```
 
 ## License
