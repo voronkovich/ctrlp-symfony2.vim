@@ -17,7 +17,7 @@ else
     let g:ctrlp_ext_vars = [s:assets_var]
 endif
 
-let s:find = "cd %s; find src/ app/ \\( -path '*/Resources/public/*' -or -path '*/Resources/assets/*' \\) -type f ! -name '.*' -prune; find web/js web/css -type f ! -name '.*' -prune;"
+let s:find = "cd %s; find src/ app/ \\( -path '*/Resources/public/*' -or -path '*/Resources/assets/*' \\) -type f ! -name '.*' -prune; find web/js web/css -type f ! -name '.*' -prune"
 
 fun! ctrlp#symfony2#assets#init()
   return ctrlp#symfony2#helpers#find(s:find)

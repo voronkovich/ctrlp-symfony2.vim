@@ -17,18 +17,14 @@ else
     let g:ctrlp_ext_vars = [s:views_var]
 endif
 
-let s:find = "cd %s; find src/ -path '*/Resources/views/*' -type f ! -name '.*' -prune | sed 's_src/__'; find app/Resources/*/views -type f ! -name '.*' -prune "
+let s:find = "cd %s; find app/ src/ -path '*/Resources/views/*' -type f ! -name '.*' -prune"
 
 fun! ctrlp#symfony2#views#init()
     return ctrlp#symfony2#helpers#find(s:find)
 endf
 
 fun! ctrlp#symfony2#views#accept(mode, str)
-    if (stridx(a:str, 'app/Resources/views') == 0)
-        call ctrlp#acceptfile(a:mode, ctrlp#symfony2#helpers#symfony2_root() . '/' .a:str)
-    else
-        call ctrlp#acceptfile(a:mode, ctrlp#symfony2#helpers#symfony2_root() . '/src/' . a:str)
-    endif
+    call ctrlp#acceptfile(a:mode, ctrlp#symfony2#helpers#symfony2_root() . '/' .a:str)
 endf
 
 let s:id = g:ctrlp_builtins + len(g:ctrlp_ext_vars)
