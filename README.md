@@ -24,6 +24,21 @@ Add to vimrc:
 Plugin 'voronkovich/ctrlp-symfony2.vim'
 ```
 
+### Running tests
+
+
+Tests are run using a Ruby test runner, so you'll have to have Ruby installed, then run
+
+```sh
+$ gem install vim-flavor
+```
+
+Now you can run tests with
+
+```sh
+$ vim-flavor test spec/
+```
+
 ## License
 
 Copyright (c) Voronkovich Oleg.  Distributed under the same terms as Vim itself.
