@@ -17,7 +17,7 @@ else
     let g:ctrlp_ext_vars = [s:entities_var]
 endif
 
-let s:find = "cd %s; find src/ \\( -path '*/Entity/*' -or -path '*/Resources/config/doctrine/*' \\) -! -path '*/Tests/*' -type f ! -name '.*' -prune | sed 's_src/__'"
+let s:find = "cd %s; find src/ \\( -path '*/Entity/*' -or -path '*/Resources/config/doctrine/*' \\) ! -path '*/Tests/*' -type f ! -name '.*' -prune | sed 's_src/__'"
 
 fun! ctrlp#symfony2#entities#init()
     return ctrlp#symfony2#helpers#find(s:find)
