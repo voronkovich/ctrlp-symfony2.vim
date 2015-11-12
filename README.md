@@ -1,4 +1,4 @@
-# ctrlp-symfony2.vim
+# ctrlp-symfony2.vim [![Build Status](https://travis-ci.org/voronkovich/ctrlp-symfony2.vim.svg?branch=master)](https://travis-ci.org/voronkovich/ctrlp-symfony2.vim)
 
 This is a ctrlp.vim extension that allows you to open your Symfony2 app files easily. Works only in Unix-like operating systems. For now, this plugin provides:
 
