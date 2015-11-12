@@ -17,14 +17,15 @@ else
     let g:ctrlp_ext_vars = [s:configs_var]
 endif
 
-let s:find = "cd %s; find src/ -path '*/Resources/config/*' -type f ! \\( -name '.*' -or -name '*.orm.*' \\) -prune | sed 's_src/__'; find app/config -type f ! -name '.*' -prune"
+let s:find = "cd %s; find src/ -path '*/Resources/config/*' -type f ! \\( -name '.*' -or -name '*.orm.*' \\) -prune | sed 's_src/__'; find app/config/ -type f ! -name '.*' -prune"
 
 fun! ctrlp#symfony2#configs#init()
     return ctrlp#symfony2#helpers#find(s:find)
 endf
 
 fun! ctrlp#symfony2#configs#accept(mode, str)
-    if (stridx(a:str, 'app/config') == 0)
+    " BSD 'find' adds a leading slash to a found result
+    if (stridx(a:str, 'app/config') == 0 || stridx(a:str, '/app/config') == 0)
         call ctrlp#acceptfile(a:mode, ctrlp#symfony2#helpers#symfony2_root() . '/' . a:str)
     else
         call ctrlp#acceptfile(a:mode, ctrlp#symfony2#helpers#symfony2_root() . '/src/' . a:str)
