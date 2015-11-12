@@ -3,16 +3,9 @@ if exists('g:loaded_ctrlp_symfony2_helpers') && g:loaded_ctrlp_symfony2_helpers
 endif
 let g:loaded_ctrlp_symfony2_helpers = 1
 
-let s:symfony2_root = ''
-
+" Returns a full absolute path to a Symfony's root directory
 fun! ctrlp#symfony2#helpers#symfony2_root()
-    if s:symfony2_root == ''
-        let s:symfony2_root = findfile('app/AppKernel.php', '.;') 
-        if s:symfony2_root != ''
-            let s:symfony2_root = fnamemodify(s:symfony2_root, ':h:h')
-        endif
-    endif
-    return s:symfony2_root
+    return fnamemodify(findfile('app/AppKernel.php'), ':p:h:h')
 endf
 
 fun! ctrlp#symfony2#helpers#find(command)
