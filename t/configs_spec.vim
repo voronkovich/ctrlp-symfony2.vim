@@ -3,7 +3,7 @@ describe "CtrlPSymfony2Configs"
   before
     let g:ctrlp_builtins = ''
     let g:ctrlp_ext_vars = []
-    cd spec/fixtures
+    cd t/fixtures
   end
 
   after

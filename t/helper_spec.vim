@@ -3,7 +3,7 @@ describe "CtrlP Symfony 2 plugin helper"
   before
     let g:ctrlp_builtins = ''
     let g:ctrlp_ext_vars = []
-    cd spec/fixtures
+    cd t/fixtures
   end
 
   after
