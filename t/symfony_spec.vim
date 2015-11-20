@@ -1,4 +1,4 @@
-describe "CtrlP Symfony 2 plugin helper"
+describe 'CtrlP Symfony helpers'
 
     before
         let g:ctrlp_builtins = ''
@@ -10,8 +10,8 @@ describe "CtrlP Symfony 2 plugin helper"
         cd -
     end
 
-    it "finds Symfony directory root"
-        Expect ctrlp#symfony2#helpers#symfony2_root() == "."
+    it 'finds the Symfony directory root'
+        Expect ctrlp#symfony#get_root() == "."
     end
 
 end

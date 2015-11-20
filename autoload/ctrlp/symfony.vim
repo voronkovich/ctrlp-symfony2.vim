@@ -1,0 +1,41 @@
+if exists('g:loaded_ctrlp_symfony') && g:loaded_ctrlp_symfony
+  finish
+endif
+let g:loaded_ctrlp_symfony = 1
+
+" Returns a relative path to a Symfony project's root directory
+fun! ctrlp#symfony#get_root()
+    return fnamemodify(findfile('app/AppKernel.php', '.;'), ':h:h')
+endf
+
+fun! ctrlp#symfony#substitute(list, pat, ...)
+    let sub = exists('a:1') ? a:1 : ''
+    let flags = exists('a:2') ? a:2 : ''
+
+    return map(a:list, printf("substitute(v:val, '%s', '%s', '%s')", a:pat, sub, flags))
+endf
+
+fun! ctrlp#symfony#find(paths, pattern, ...)
+    let cwd = getcwd()
+    execute ':cd ' . ctrlp#symfony#get_root()
+
+    let results = s:globpath(join(a:paths, ','), a:pattern)
+
+    if (a:0 > 0)
+        let results = filter(results, printf("v:val !~ '%s'", a:1))
+    endif
+
+    execute ':cd ' . cwd
+
+    return results
+endf
+
+if v:version > 704 || (v:version == 704 && has('patch279'))
+    fun! s:globpath(path, pattern) abort
+        return globpath(a:path, a:pattern, 1, 1)
+    endf
+else
+    fun! s:globpath(path, pattern) abort
+        return split(globpath(a:path, a:pattern, 1), '\n')
+    endf
+endi

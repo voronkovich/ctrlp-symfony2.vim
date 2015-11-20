@@ -1,4 +1,4 @@
-describe "CtrlPSymfony2Configs"
+describe 'CtrlPSymfonyConfigs'
 
     before
         let g:ctrlp_builtins = ''
@@ -10,11 +10,11 @@ describe "CtrlPSymfony2Configs"
         cd -
     end
 
-    it "finds the Symfony config files"
-        Expect ctrlp#symfony2#configs#init() == [
-            \"MyBundle/Resources/config/routing.yml",
-            \"MyBundle/Resources/config/services/service.yml",
-            \"app/config/routing.yml"
+    it 'finds the Symfony config files'
+        Expect ctrlp#symfony#configs#find() == [
+            \'app/config/routing.yml',
+            \'src/MyBundle/Resources/config/routing.yml',
+            \'src/MyBundle/Resources/config/services/service.yml',
         \]
     end
 
