@@ -1,6 +1,6 @@
 # ctrlp-symfony2.vim [![Build Status](https://travis-ci.org/voronkovich/ctrlp-symfony2.vim.svg?branch=master)](https://travis-ci.org/voronkovich/ctrlp-symfony2.vim)
 
-This is a ctrlp.vim extension that allows you to open your Symfony2/3 app files easily. For now, this plugin provides:
+This is a [ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim) plugin that allows you to open your Symfony 2/3 app files easily. For now, this plugin provides:
 
 * `:CtrlPSymfonyEntities` list all project entities
 * `:CtrlPSymfonyControllers` list all project controllers
