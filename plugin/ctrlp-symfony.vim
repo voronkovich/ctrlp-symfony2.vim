@@ -2,7 +2,9 @@ if ! exists('g:ctrlp_custom_ignore')
     let g:ctrlp_custom_ignore = { 'dir': '\v[\/](app[\/]cache|vendor[\/]composer|web[\/]bundles)$' }
 endif
 
-let g:ctrlp_symfony_ignore_tests_pattern = printf('\(\\\|/\)%s\(\\\|/\)', join([ '\(T\|t\)ests\?', '\(S\|s\)pecs\?' ], '\|'))
+let s:ignore_tests_dirs = [ '\(T\|t\)ests\?', '\(S\|s\)pecs\?' ]
+
+let g:ctrlp_symfony_ignore_tests_pattern = printf('\(\\\|/\)%s\(\\\|/\)', join(s:ignore_tests_dirs, '\|'))
 
 command! CtrlPSymfonyEntities call ctrlp#init(ctrlp#symfony#entities#id())
 command! CtrlPSymfonyControllers call ctrlp#init(ctrlp#symfony#controllers#id())
