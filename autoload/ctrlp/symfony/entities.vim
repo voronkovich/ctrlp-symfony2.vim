@@ -29,7 +29,7 @@ endf
 fun! ctrlp#symfony#entities#init()
     let results = ctrlp#symfony#entities#find()
 
-    return ctrlp#symfony#substitute(results, '^src/\|\.php$', '', 'g')
+    return map(results, 'fnamemodify(v:val, ":s?src/??:r")')
 endf
 
 fun! ctrlp#symfony#entities#accept(mode, str)

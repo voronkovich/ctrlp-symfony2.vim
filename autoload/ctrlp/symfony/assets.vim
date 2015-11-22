@@ -31,7 +31,7 @@ endf
 fun! ctrlp#symfony#assets#init()
     let results = ctrlp#symfony#assets#find()
 
-    return ctrlp#symfony#substitute(results, '^\(src/\|app/Resources/\)')
+    return map(results, 'fnamemodify(v:val, ":s?src/??:s?app/Resources/??")')
 endf
 
 fun! ctrlp#symfony#assets#accept(mode, str)

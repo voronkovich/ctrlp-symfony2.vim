@@ -24,7 +24,7 @@ endf
 fun! ctrlp#symfony#controllers#init()
     let results = ctrlp#symfony#controllers#find()
 
-    return ctrlp#symfony#substitute(results, '^src/\|\.php$', '', 'g')
+    return map(results, 'fnamemodify(v:val, ":s?src/??:r")')
 endf
 
 fun! ctrlp#symfony#controllers#accept(mode, str)

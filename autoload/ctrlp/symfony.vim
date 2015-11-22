@@ -8,13 +8,6 @@ fun! ctrlp#symfony#get_root()
     return fnamemodify(findfile('app/AppKernel.php', '.;'), ':h:h')
 endf
 
-fun! ctrlp#symfony#substitute(list, pat, ...)
-    let sub = exists('a:1') ? a:1 : ''
-    let flags = exists('a:2') ? a:2 : ''
-
-    return map(a:list, printf("substitute(v:val, '%s', '%s', '%s')", a:pat, sub, flags))
-endf
-
 fun! ctrlp#symfony#find(paths, pattern, ...)
     let cwd = getcwd()
     execute ':cd ' . ctrlp#symfony#get_root()

@@ -29,7 +29,7 @@ endf
 fun! ctrlp#symfony#configs#init()
     let results = ctrlp#symfony#configs#find()
 
-    return ctrlp#symfony#substitute(results, '^\(src/\|app/\)')
+    return map(results, 'fnamemodify(v:val, ":s?src/??:s?app/??")')
 endf
 
 fun! ctrlp#symfony#configs#accept(mode, str)
