@@ -13,6 +13,7 @@ describe 'CtrlPSymfonyViews'
     it 'finds the Symfony views'
         Expect ctrlp#symfony#views#find() == [
             \'app/Resources/views/base.html.twig',
+            \'app/Resources/TwigBundle/views/Exception/error.html.twig',
             \'src/MyBundle/Resources/views/product.html.twig'
         \]
     end

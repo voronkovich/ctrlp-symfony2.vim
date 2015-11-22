@@ -20,6 +20,7 @@ endif
 fun! ctrlp#symfony#views#find()
     let paths = [
         \'app/Resources/views/**',
+        \'app/Resources/*Bundle/views/**',
         \'src/**/Resources/views/**',
     \]
 
