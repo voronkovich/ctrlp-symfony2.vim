@@ -1,5 +1,5 @@
 if exists('g:loaded_ctrlp_symfony') && g:loaded_ctrlp_symfony
-  finish
+    finish
 endif
 let g:loaded_ctrlp_symfony = 1
 
@@ -31,4 +31,4 @@ else
     fun! s:globpath(path, pattern) abort
         return split(globpath(a:path, a:pattern, 1), '\n')
     endf
-endi
+endif
