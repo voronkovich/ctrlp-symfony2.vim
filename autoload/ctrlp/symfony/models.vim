@@ -28,6 +28,9 @@ fun! ctrlp#symfony#models#find()
         \'src/*/Repository',
         \'src/*/*/Repository',
         \'src/*/*/*/Repository',
+        \'src/*/Doctrine/ORM',
+        \'src/*/*/Doctrine/ORM',
+        \'src/*/*/*/Doctrine/ORM',
     \]
 
     return ctrlp#symfony#find(paths, '**/[^.]*.php', g:ctrlp_symfony_ignore_tests_pattern)

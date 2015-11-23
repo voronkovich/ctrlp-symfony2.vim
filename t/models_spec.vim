@@ -15,6 +15,7 @@ describe 'CtrlPSymfonyModels'
         Expect ctrlp#symfony#models#find() == [
             \'src/MyBundle/Entity/User.php',
             \'src/MyBundle/Model/Product.php',
+            \'src/RandomVendor/Bundle/RandomBundle/Doctrine/ORM/OrderRepository.php',
         \]
     end
 
