@@ -19,13 +19,17 @@ endif
 
 fun! ctrlp#symfony#assets#find()
     let paths = [
-        \'app/Resources/public/**',
-        \'app/Resources/assets/**',
-        \'src/**/Resources/public/**',
-        \'src/**/Resources/assets/**',
+        \'app/Resources/public',
+        \'app/Resources/assets',
+        \'src/*/Resources/public',
+        \'src/*/*/Resources/public',
+        \'src/*/*/*/Resources/public',
+        \'src/*/Resources/assets',
+        \'src/*/*/Resources/assets',
+        \'src/*/*/*/Resources/assets',
     \]
 
-    return ctrlp#symfony#find(paths, '[^.]*.*', '\.\(png\|\jpg\|jpeg\|gif\)$')
+    return ctrlp#symfony#find(paths, '**/[^.]*.*', '\.\(png\|\jpg\|jpeg\|gif\)$')
 endf
 
 fun! ctrlp#symfony#assets#init()

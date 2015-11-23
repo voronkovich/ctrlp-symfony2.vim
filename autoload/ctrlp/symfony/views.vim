@@ -19,12 +19,14 @@ endif
 
 fun! ctrlp#symfony#views#find()
     let paths = [
-        \'app/Resources/views/**',
-        \'app/Resources/*Bundle/views/**',
-        \'src/**/Resources/views/**',
+        \'app/Resources/views',
+        \'app/Resources/*Bundle/views',
+        \'src/*/Resources/views',
+        \'src/*/*/Resources/views',
+        \'src/*/*/*/Resources/views',
     \]
 
-    return ctrlp#symfony#find(paths, '[^.]*.*')
+    return ctrlp#symfony#find(paths, '**/[^.]*.*', g:ctrlp_symfony_ignore_tests_pattern)
 endf
 
 fun! ctrlp#symfony#views#init()

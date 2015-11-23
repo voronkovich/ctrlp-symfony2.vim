@@ -3,6 +3,7 @@ describe 'CtrlPSymfonyViews'
     before
         let g:ctrlp_builtins = ''
         let g:ctrlp_ext_vars = []
+        runtime plugin/ctrlp-symfony.vim
         cd t/fixtures
     end
 

@@ -19,11 +19,18 @@ endif
 
 fun! ctrlp#symfony#models#find()
     let paths = [
-        \'src/**/Entity/**',
-        \'src/**/Model/**',
+        \'src/*/Entity',
+        \'src/*/*/Entity',
+        \'src/*/*/*/Entity',
+        \'src/*/Model',
+        \'src/*/*/Model',
+        \'src/*/*/*/Model',
+        \'src/*/Repository',
+        \'src/*/*/Repository',
+        \'src/*/*/*/Repository',
     \]
 
-    return ctrlp#symfony#find(paths, '*.php', g:ctrlp_symfony_ignore_tests_pattern)
+    return ctrlp#symfony#find(paths, '**/[^.]*.php', g:ctrlp_symfony_ignore_tests_pattern)
 endf
 
 fun! ctrlp#symfony#models#init()

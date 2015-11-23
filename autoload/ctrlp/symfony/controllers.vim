@@ -18,7 +18,13 @@ else
 endif
 
 fun! ctrlp#symfony#controllers#find()
-    return ctrlp#symfony#find([ 'src/**/Controller/**' ], '*Controller.php', g:ctrlp_symfony_ignore_tests_pattern)
+    let paths = [
+        \'src/*/Controller',
+        \'src/*/*/Controller',
+        \'src/*/*/*/Controller',
+    \]
+
+    return ctrlp#symfony#find(paths, '**/[^.]*Controller.php', g:ctrlp_symfony_ignore_tests_pattern)
 endf
 
 fun! ctrlp#symfony#controllers#init()

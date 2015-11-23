@@ -19,11 +19,13 @@ endif
 
 fun! ctrlp#symfony#configs#find()
     let paths = [
-        \'app/config/**',
-        \'src/**/Resources/config/**',
+        \'app/config',
+        \'src/**/Resources/config',
+        \'src/*/*/Resources/config',
+        \'src/*/*/*/Resources/config',
     \]
 
-    return ctrlp#symfony#find(paths, '[^.]*.*')
+    return ctrlp#symfony#find(paths, '**/[^.]*.*', g:ctrlp_symfony_ignore_tests_pattern)
 endf
 
 fun! ctrlp#symfony#configs#init()
