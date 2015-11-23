@@ -13,8 +13,9 @@ describe 'CtrlPSymfonyModels'
 
     it 'finds the Symfony models (Doctrine/Propel)'
         Expect ctrlp#symfony#models#find() == [
-            \'src/MyBundle/Entity/User.php',
-            \'src/MyBundle/Model/Product.php',
+            \'src/AppBundle/Entity/User.php',
+            \'src/Acme/DemoBundle/Entity/Demo.php',
+            \'src/AppBundle/Model/Product.php',
             \'src/RandomVendor/Bundle/RandomBundle/Doctrine/ORM/OrderRepository.php',
         \]
     end

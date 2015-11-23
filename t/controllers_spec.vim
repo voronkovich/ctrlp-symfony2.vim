@@ -13,9 +13,12 @@ describe 'CtrlPSymfonyControllers'
 
     it 'finds the Symfony controllers'
         Expect ctrlp#symfony#controllers#find() == [
-            \'src/MyBundle/Controller/Admin/UserController.php',
-            \'src/MyBundle/Controller/PostController.php',
-            \'src/MyBundle/Controller/SecurityController.php',
+            \'src/AppBundle/Controller/Admin/UserController.php',
+            \'src/AppBundle/Controller/PostController.php',
+            \'src/AppBundle/Controller/SecurityController.php',
+            \'src/Acme/DemoBundle/Controller/HelloController.php',
+            \'src/RandomVendor/Bundle/RandomBundle/Controller/Admin/OrderController.php',
+            \'src/RandomVendor/Bundle/RandomBundle/Controller/HomepageController.php',
         \]
     end
 

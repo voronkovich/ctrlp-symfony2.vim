@@ -15,7 +15,8 @@ describe 'CtrlPSymfonyViews'
         Expect ctrlp#symfony#views#find() == [
             \'app/Resources/views/base.html.twig',
             \'app/Resources/TwigBundle/views/Exception/error.html.twig',
-            \'src/MyBundle/Resources/views/product.html.twig'
+            \'src/AppBundle/Resources/views/product.html.twig',
+            \'src/RandomVendor/Bundle/RandomBundle/Resources/views/layout.html.twig',
         \]
     end
 

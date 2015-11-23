@@ -13,7 +13,8 @@ describe 'CtrlPSymfonyForms'
 
     it 'finds the Symfony forms'
         Expect ctrlp#symfony#forms#find() == [
-            \'src/MyBundle/Form/RegistrationType.php',
+            \'src/AppBundle/Form/RegistrationType.php',
+            \'src/Acme/DemoBundle/Form/Type/DemoType.php',
             \'src/RandomVendor/Bundle/RandomBundle/Form/Type/PostType.php',
         \]
     end

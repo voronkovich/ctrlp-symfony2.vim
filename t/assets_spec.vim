@@ -14,8 +14,10 @@ describe 'CtrlPSymfonyAssets'
     it 'finds the Symfony assets'
         Expect ctrlp#symfony#assets#find() == [
             \'app/Resources/public/js/main.js',
-            \'src/MyBundle/Resources/public/css/styles.css',
-            \'src/MyBundle/Resources/public/js/app.js',
+            \'src/AppBundle/Resources/public/css/styles.css',
+            \'src/AppBundle/Resources/public/js/app.js',
+            \'src/RandomVendor/Bundle/RandomBundle/Resources/public/js/order.js',
+            \'src/RandomVendor/Bundle/RandomBundle/Resources/public/scss/main.scss',
         \]
     end
 
