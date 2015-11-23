@@ -2,7 +2,7 @@
 
 This is a [ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim) plugin that allows you to open your Symfony 2/3 app files easily. For now, this plugin provides:
 
-* `:CtrlPSymfonyModels` list all project models (entities)
+* `:CtrlPSymfonyModels` list all project models (entities) and theirs repositories
 * `:CtrlPSymfonyControllers` list all project controllers
 * `:CtrlPSymfonyViews` list all project views
 * `:CtrlPSymfonyAssets` list all project assets files
