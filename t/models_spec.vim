@@ -1,4 +1,4 @@
-describe 'CtrlPSymfonyEntities'
+describe 'CtrlPSymfonyModels'
 
     before
         let g:ctrlp_builtins = ''
@@ -11,8 +11,8 @@ describe 'CtrlPSymfonyEntities'
         cd -
     end
 
-    it 'finds the Symfony entities'
-        Expect ctrlp#symfony#entities#find() == [
+    it 'finds the Symfony models (Doctrine/Propel)'
+        Expect ctrlp#symfony#models#find() == [
             \'src/MyBundle/Entity/User.php',
             \'src/MyBundle/Model/Product.php',
         \]
