@@ -14,8 +14,10 @@ describe 'CtrlPSymfonyConfigs'
     it 'finds the Symfony config files'
         Expect ctrlp#symfony#configs#find() == [
             \'app/config/routing.yml',
-            \'src/MyBundle/Resources/config/routing.yml',
-            \'src/MyBundle/Resources/config/services/service.yml',
+            \'src/AppBundle/Resources/config/routing.yml',
+            \'src/AppBundle/Resources/config/services.yml',
+            \'src/RandomVendor/Bundle/RandomBundle/Resources/config/doctrine/Order.orm.yml',
+            \'src/RandomVendor/Bundle/RandomBundle/Resources/config/services.xml',
         \]
     end
 

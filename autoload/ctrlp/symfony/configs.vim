@@ -20,7 +20,7 @@ endif
 fun! ctrlp#symfony#configs#find()
     let paths = [
         \'app/config',
-        \'src/**/Resources/config',
+        \'src/*/Resources/config',
         \'src/*/*/Resources/config',
         \'src/*/*/*/Resources/config',
     \]
