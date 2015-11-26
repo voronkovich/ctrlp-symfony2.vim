@@ -30,13 +30,13 @@ Plugin 'voronkovich/ctrlp-symfony2.vim'
 Tests are run using a Ruby test runner, so you'll have to have Ruby installed, then run
 
 ```sh
-$ gem install vim-flavor
+$ bundle install
 ```
 
 Now you can run tests with
 
 ```sh
-$ vim-flavor test spec/
+$ vim-flavor test t/
 ```
 
 ## License
