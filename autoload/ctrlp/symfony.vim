@@ -12,13 +12,15 @@ fun! ctrlp#symfony#find(paths, pattern, ...)
     let cwd = getcwd()
     execute ':cd ' . ctrlp#symfony#get_root()
 
-    let results = s:globpath(join(a:paths, ','), a:pattern)
+    try
+        let results = s:globpath(join(a:paths, ','), a:pattern)
 
-    if (a:0 > 0)
-        let results = filter(results, printf("v:val !~ '%s'", a:1))
-    endif
-
-    execute ':cd ' . cwd
+        if (a:0 > 0)
+            let results = filter(results, printf("v:val !~ '%s'", a:1))
+        endif
+    finally
+        execute ':cd ' . cwd
+    endtry
 
     return results
 endf
