@@ -8,6 +8,13 @@ fun! ctrlp#symfony#get_root()
     return fnamemodify(findfile('app/AppKernel.php', '.;'), ':h:h')
 endf
 
+" Runs a Symfony console command and returns a result
+fun! ctrlp#symfony#console(cmd)
+    let root = ctrlp#symfony#get_root()
+
+    return system(printf('php %s/app/console %s', root, a:cmd))
+endf
+
 fun! ctrlp#symfony#find(paths, pattern, ...)
     let cwd = getcwd()
     execute ':cd ' . ctrlp#symfony#get_root()
