@@ -8,6 +8,7 @@ This is a [ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim) plugin that allows 
 * `:CtrlPSymfonyAssets` list all project assets files
 * `:CtrlPSymfonyConfigs` list all project config files
 * `:CtrlPSymfonyForms` list all project form types, extensions and etc.
+* `:CtrlPSymfonyServices` list all project services
 
 ## Installation
 
