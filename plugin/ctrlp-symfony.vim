@@ -12,6 +12,7 @@ command! CtrlPSymfonyViews call ctrlp#init(ctrlp#symfony#views#id())
 command! CtrlPSymfonyAssets call ctrlp#init(ctrlp#symfony#assets#id())
 command! CtrlPSymfonyConfigs call ctrlp#init(ctrlp#symfony#configs#id())
 command! CtrlPSymfonyForms call ctrlp#init(ctrlp#symfony#forms#id())
+command! CtrlPSymfonyServices call ctrlp#init(ctrlp#symfony#services#id())
 
 command! CtrlPSymfony2Entities call ctrlp#init(ctrlp#symfony#models#id())
 command! CtrlPSymfony2Controllers call ctrlp#init(ctrlp#symfony#controllers#id())

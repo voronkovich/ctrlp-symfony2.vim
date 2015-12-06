@@ -11,8 +11,58 @@ endf
 " Runs a Symfony console command and returns a result
 fun! ctrlp#symfony#console(cmd)
     let root = ctrlp#symfony#get_root()
+    let output = system(printf('php %s/app/console %s', root, a:cmd))
 
-    return system(printf('php %s/app/console %s', root, a:cmd))
+    return v:shell_error ? 0 : output
+endf
+
+fun! ctrlp#symfony#get_services(...)
+    let services = {}
+
+    if get(a:, 1, 0)
+        let results = split(ctrlp#symfony#console('debug:container --no-ansi --show-private'), '\n')
+    else
+        let results = split(ctrlp#symfony#console('debug:container --no-ansi'), '\n')
+    endif
+    " Remove the first and the last elements
+    call remove(results, 0, 2)
+    call remove(results, -1)
+
+    for item in results
+        let row = split(item)
+        if len(row) >= 2
+            if row[1] == 'alias'
+                let services[row[0]] = '@' . substitute(row[3], '"', '', 'g')
+            else
+                let services[row[0]] = row[1]
+            endif
+        endif
+    endfor
+
+    return services
+endf
+
+fun! ctrlp#symfony#get_service_class(id, services)
+    let class = get(a:services, a:id, 0)
+
+    if (class && class =~ '^@')
+        let class = ctrlp#symfony#get_service_class(strpart(class, 1), a:services)
+    endif
+
+    return class
+endf
+
+fun! ctrlp#symfony#composer_find_file(name)
+    let autoload_file = findfile('vendor/autoload.php', '.;')
+
+    if autoload_file == ''
+        throw 'File vendor/autoload.php not found!'
+    endif
+
+    let code = printf('$c = require "%s"; echo $c->findFile($argv[1]);', autoload_file)
+    let output = system(printf("php -r %s %s", shellescape(code), shellescape(a:name)))
+
+    return v:shell_error ? 0 : output
 endf
 
 fun! ctrlp#symfony#find(paths, pattern, ...)
