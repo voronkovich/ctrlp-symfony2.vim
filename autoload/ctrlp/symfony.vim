@@ -45,7 +45,7 @@ endf
 fun! ctrlp#symfony#get_service_class(id, services)
     let class = get(a:services, a:id, 0)
 
-    if (class && class =~ '^@')
+    if (stridx(class, '@') == 0)
         let class = ctrlp#symfony#get_service_class(strpart(class, 1), a:services)
     endif
 
