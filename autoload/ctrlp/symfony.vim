@@ -11,7 +11,18 @@ endf
 " Runs a Symfony console command and returns a result
 fun! ctrlp#symfony#console(cmd)
     let root = ctrlp#symfony#get_root()
-    let output = system(printf('php %s/app/console %s', root, a:cmd))
+
+    if filereadable(root . '/bin/console')
+        " Symfony 3
+        let console = root . '/bin/console'
+    elseif filereadable(root . '/app/console')
+        " Symfony 2
+        let console = root . '/app/console'
+    else
+        throw 'Symfony console not found!'
+    endif
+
+    let output = system(printf('php %s %s', console, a:cmd))
 
     return v:shell_error ? 0 : output
 endf
