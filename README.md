@@ -9,6 +9,7 @@ This is a [ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim) plugin that allows 
 * `:CtrlPSymfonyConfigs` list all project config files
 * `:CtrlPSymfonyForms` list all project form types, extensions and etc.
 * `:CtrlPSymfonyServices` list all project services
+* `:CtrlPSymfonyServiceDefinition` show service definition
 
 ## Installation
 

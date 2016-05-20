@@ -8,32 +8,52 @@ fun! ctrlp#symfony#get_root()
     return fnamemodify(findfile('app/AppKernel.php', '.;'), ':h:h')
 endf
 
-" Runs a Symfony console command and returns a result
-fun! ctrlp#symfony#console(cmd)
+" Returns a relative path to a Symfony's console
+fun! ctrlp#symfony#get_console()
     let root = ctrlp#symfony#get_root()
 
     if filereadable(root . '/bin/console')
         " Symfony 3
-        let console = root . '/bin/console'
+        return root . '/bin/console'
     elseif filereadable(root . '/app/console')
         " Symfony 2
-        let console = root . '/app/console'
+        return root . '/app/console'
     else
         throw 'Symfony console not found!'
     endif
+endf
+
+" Runs a Symfony console command and returns a result
+fun! ctrlp#symfony#command(cmd)
+    let console = ctrlp#symfony#get_console()
 
     let output = system(printf('php %s %s', console, a:cmd))
 
     return v:shell_error ? 0 : output
 endf
 
+function! ctrlp#symfony#tmp_window(name, cmd)
+    let console = ctrlp#symfony#get_console()
+    let command = printf('php %s %s', console, a:cmd)
+
+    let winnr = bufwinnr('^' . a:name . '$')
+    silent! execute  winnr < 0 ? 'botright vnew ' . fnameescape(a:name) : winnr . 'wincmd w'
+    setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap nonumber
+    " silent! execute 'silent :normal i' . a:content
+    silent! execute 'silent %!'. command
+    silent! redraw
+    silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . 'wincmd w''
+    silent! execute 'nnoremap <silent> <buffer> q :q<CR>'
+    silent! execute 'AnsiEsc'
+endfunction
+
 fun! ctrlp#symfony#get_services(...)
     let services = {}
 
     if get(a:, 1, 0)
-        let results = split(ctrlp#symfony#console('debug:container --no-ansi --show-private'), '\n')
+        let results = split(ctrlp#symfony#command('debug:container --no-ansi --show-private'), '\n')
     else
-        let results = split(ctrlp#symfony#console('debug:container --no-ansi'), '\n')
+        let results = split(ctrlp#symfony#command('debug:container --no-ansi'), '\n')
     endif
     " Remove the first and the last elements
     call remove(results, 0, 2)
