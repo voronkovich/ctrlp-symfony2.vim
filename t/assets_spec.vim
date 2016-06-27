@@ -3,7 +3,7 @@ describe 'CtrlPSymfonyAssets'
     before
         let g:ctrlp_builtins = ''
         let g:ctrlp_ext_vars = []
-        runtime plugin/ctrlp-symfony.vim
+        let &runtimepath=getcwd()
         cd t/fixtures
     end
 

@@ -20,17 +20,17 @@ endif
 let s:services = {}
 
 fun! ctrlp#symfony#services#init()
-    let s:services = ctrlp#symfony#get_services()
+    let s:services = symfony#get_services()
 
     return keys(s:services)
 endf
 
 fun! ctrlp#symfony#services#accept(mode, str)
-    let root = ctrlp#symfony#get_root()
+    let root = symfony#get_root()
 
-    let class = ctrlp#symfony#get_service_class(a:str, s:services)
+    let class = symfony#get_service_class(a:str, s:services)
 
-    let file = ctrlp#symfony#composer_find_file(class)
+    let file = symfony#composer_find_file(class)
 
     call ctrlp#acceptfile(a:mode, file)
 endf

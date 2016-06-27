@@ -33,7 +33,7 @@ fun! ctrlp#symfony#models#find()
         \'src/*/*/*/Doctrine/ORM',
     \]
 
-    return ctrlp#symfony#find(paths, '**/[^.]*.php', g:ctrlp_symfony_ignore_tests_pattern)
+    return symfony#find(paths, '**/[^.]*.php', g:ctrlp_symfony_ignore_tests_pattern)
 endf
 
 fun! ctrlp#symfony#models#init()
@@ -43,7 +43,7 @@ fun! ctrlp#symfony#models#init()
 endf
 
 fun! ctrlp#symfony#models#accept(mode, str)
-    call ctrlp#acceptfile(a:mode, printf('%s/src/%s.php', ctrlp#symfony#get_root(), a:str))
+    call ctrlp#acceptfile(a:mode, printf('%s/src/%s.php', symfony#get_root(), a:str))
 endf
 
 let s:id = g:ctrlp_builtins + len(g:ctrlp_ext_vars)

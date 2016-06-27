@@ -24,7 +24,7 @@ fun! ctrlp#symfony#controllers#find()
         \'src/*/*/*/Controller',
     \]
 
-    return ctrlp#symfony#find(paths, '**/[^.]*Controller.php', g:ctrlp_symfony_ignore_tests_pattern)
+    return symfony#find(paths, '**/[^.]*Controller.php', g:ctrlp_symfony_ignore_tests_pattern)
 endf
 
 fun! ctrlp#symfony#controllers#init()
@@ -34,7 +34,7 @@ fun! ctrlp#symfony#controllers#init()
 endf
 
 fun! ctrlp#symfony#controllers#accept(mode, str)
-    call ctrlp#acceptfile(a:mode, printf('%s/src/%s.php', ctrlp#symfony#get_root(), a:str))
+    call ctrlp#acceptfile(a:mode, printf('%s/src/%s.php', symfony#get_root(), a:str))
 endf
 
 let s:id = g:ctrlp_builtins + len(g:ctrlp_ext_vars)

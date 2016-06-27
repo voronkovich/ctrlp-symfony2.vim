@@ -29,7 +29,7 @@ fun! ctrlp#symfony#assets#find()
         \'src/*/*/*/Resources/assets',
     \]
 
-    return ctrlp#symfony#find(paths, '**/[^.]*.*', '\.\(png\|\jpg\|jpeg\|gif\)$')
+    return symfony#find(paths, '**/[^.]*.*', '\.\(png\|\jpg\|jpeg\|gif\)$')
 endf
 
 fun! ctrlp#symfony#assets#init()
@@ -39,7 +39,7 @@ fun! ctrlp#symfony#assets#init()
 endf
 
 fun! ctrlp#symfony#assets#accept(mode, str)
-    let root = ctrlp#symfony#get_root()
+    let root = symfony#get_root()
 
     if filereadable(printf('%s/app/Resources/%s', root, a:str))
         call ctrlp#acceptfile(a:mode, printf('%s/app/Resources/%s', root, a:str))

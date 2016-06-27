@@ -26,7 +26,7 @@ fun! ctrlp#symfony#views#find()
         \'src/*/*/*/Resources/views',
     \]
 
-    return ctrlp#symfony#find(paths, '**/[^.]*.*', g:ctrlp_symfony_ignore_tests_pattern)
+    return symfony#find(paths, '**/[^.]*.*', g:ctrlp_symfony_ignore_tests_pattern)
 endf
 
 fun! ctrlp#symfony#views#init()
@@ -36,7 +36,7 @@ fun! ctrlp#symfony#views#init()
 endf
 
 fun! ctrlp#symfony#views#accept(mode, str)
-    let root = ctrlp#symfony#get_root()
+    let root = symfony#get_root()
 
     if filereadable(printf('%s/app/Resources/%s', root, a:str))
         call ctrlp#acceptfile(a:mode, printf('%s/app/Resources/%s', root, a:str))

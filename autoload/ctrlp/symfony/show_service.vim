@@ -20,14 +20,14 @@ endif
 let s:services = {}
 
 fun! ctrlp#symfony#show_service#init()
-    let s:services = ctrlp#symfony#get_services()
+    let s:services = symfony#get_services()
 
     return keys(s:services)
 endf
 
 fun! ctrlp#symfony#show_service#accept(mode, str)
     call ctrlp#exit()
-    call ctrlp#symfony#tmp_window('Symfony service @' . a:str, 'debug:container --no-ansi ' . a:str)
+    call symfony#tmp_window('Symfony service @' . a:str, 'debug:container --no-ansi ' . a:str)
 endf
 
 let s:id = g:ctrlp_builtins + len(g:ctrlp_ext_vars)

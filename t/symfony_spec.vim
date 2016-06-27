@@ -1,8 +1,9 @@
-describe 'CtrlP Symfony helpers'
+describe 'Symfony helpers'
 
     before
         let g:ctrlp_builtins = ''
         let g:ctrlp_ext_vars = []
+        let &runtimepath=getcwd()
         cd t/fixtures
     end
 
@@ -11,7 +12,7 @@ describe 'CtrlP Symfony helpers'
     end
 
     it 'finds the Symfony directory root'
-        Expect ctrlp#symfony#get_root() == "."
+        Expect symfony#get_root() == "."
     end
 
 end
