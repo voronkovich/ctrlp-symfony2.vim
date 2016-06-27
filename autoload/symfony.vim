@@ -4,13 +4,13 @@ endif
 let g:loaded_ctrlp_symfony = 1
 
 " Returns a relative path to a Symfony project's root directory
-fun! ctrlp#symfony#get_root()
+fun! symfony#get_root()
     return fnamemodify(findfile('app/AppKernel.php', '.;'), ':h:h')
 endf
 
 " Returns a relative path to a Symfony's console
-fun! ctrlp#symfony#get_console()
-    let root = ctrlp#symfony#get_root()
+fun! symfony#get_console()
+    let root = symfony#get_root()
 
     if filereadable(root . '/bin/console')
         " Symfony 3
@@ -24,16 +24,16 @@ fun! ctrlp#symfony#get_console()
 endf
 
 " Runs a Symfony console command and returns a result
-fun! ctrlp#symfony#command(cmd)
-    let console = ctrlp#symfony#get_console()
+fun! symfony#command(cmd)
+    let console = symfony#get_console()
 
     let output = system(printf('php %s %s', console, a:cmd))
 
     return v:shell_error ? 0 : output
 endf
 
-function! ctrlp#symfony#tmp_window(name, cmd)
-    let console = ctrlp#symfony#get_console()
+function! symfony#tmp_window(name, cmd)
+    let console = symfony#get_console()
     let command = printf('php %s %s', console, a:cmd)
 
     let winnr = bufwinnr('^' . a:name . '$')
@@ -47,13 +47,13 @@ function! ctrlp#symfony#tmp_window(name, cmd)
     silent! execute 'AnsiEsc'
 endfunction
 
-fun! ctrlp#symfony#get_services(...)
+fun! symfony#get_services(...)
     let services = {}
 
     if get(a:, 1, 0)
-        let results = split(ctrlp#symfony#command('debug:container --no-ansi --show-private'), '\n')
+        let results = split(symfony#command('debug:container --no-ansi --show-private'), '\n')
     else
-        let results = split(ctrlp#symfony#command('debug:container --no-ansi'), '\n')
+        let results = split(symfony#command('debug:container --no-ansi'), '\n')
     endif
     " Remove the first and the last elements
     call remove(results, 0, 2)
@@ -73,17 +73,17 @@ fun! ctrlp#symfony#get_services(...)
     return services
 endf
 
-fun! ctrlp#symfony#get_service_class(id, services)
+fun! symfony#get_service_class(id, services)
     let class = get(a:services, a:id, 0)
 
     if (stridx(class, '@') == 0)
-        let class = ctrlp#symfony#get_service_class(strpart(class, 1), a:services)
+        let class = symfony#get_service_class(strpart(class, 1), a:services)
     endif
 
     return class
 endf
 
-fun! ctrlp#symfony#composer_find_file(name)
+fun! symfony#composer_find_file(name)
     let autoload_file = findfile('vendor/autoload.php', '.;')
 
     if autoload_file == ''
@@ -96,9 +96,9 @@ fun! ctrlp#symfony#composer_find_file(name)
     return v:shell_error ? 0 : output
 endf
 
-fun! ctrlp#symfony#find(paths, pattern, ...)
+fun! symfony#find(paths, pattern, ...)
     let cwd = getcwd()
-    execute ':cd ' . ctrlp#symfony#get_root()
+    execute ':cd ' . symfony#get_root()
 
     try
         let results = s:globpath(join(a:paths, ','), a:pattern)
