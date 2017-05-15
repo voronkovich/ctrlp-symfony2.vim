@@ -32,7 +32,7 @@ fun! symfony#command(cmd)
     return v:shell_error ? 0 : output
 endf
 
-function! symfony#tmp_window(name, cmd)
+fun! symfony#tmp_window(name, cmd)
     let console = symfony#get_console()
     let command = printf('php %s %s', console, a:cmd)
 
@@ -45,7 +45,23 @@ function! symfony#tmp_window(name, cmd)
     silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . 'wincmd w''
     silent! execute 'nnoremap <silent> <buffer> q :q<CR>'
     silent! execute 'AnsiEsc'
-endfunction
+endf
+
+fun! symfony#get_routes()
+    let routes = []
+    let results = split(symfony#command('debug:router --no-ansi'), '\n')
+
+    " Remove the first and the last elements
+    call remove(results, 0, 2)
+    call remove(results, -1)
+
+    for item in results
+        let row = split(item)
+        call add(routes, row[0])
+    endfor
+
+    return routes
+endf
 
 fun! symfony#get_services(...)
     let services = {}
